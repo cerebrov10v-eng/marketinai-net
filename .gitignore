@@ -8,3 +8,4 @@ __pycache__/
 .venv_test/
 tmp_leads.db
 leads.db
+*.db
