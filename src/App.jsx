@@ -138,9 +138,12 @@ export default function App() {
       <nav>
         <div className="container nav-inner">
           <div className="nav-logo">Marketin<span>AI</span></div>
-          <a className="nav-cta" href={STRIPE_PAYMENT_LINK} target="_blank" rel="noopener noreferrer">
-            Acceder al Kit — €397
-          </a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <a href="/servicios/" style={{ color: 'var(--text2)', fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none' }}>Servicios</a>
+            <a className="nav-cta" href={STRIPE_PAYMENT_LINK} target="_blank" rel="noopener noreferrer">
+              Acceder al Kit — €397
+            </a>
+          </div>
         </div>
       </nav>
 
@@ -349,6 +352,12 @@ export default function App() {
         <div className="container">
           <p>
             © 2026 MarketinAI · <a href="mailto:hola@marketinai.net">hola@marketinai.net</a>
+            {' · '}
+            <a href="/pricing">Precios</a>
+            {' · '}
+            <a href="/servicios/">Servicios</a>
+            {' · '}
+            <a href="/contact">Contacto</a>
             {' · '}
             <a href="/privacidad">Privacidad</a>
             {' · '}

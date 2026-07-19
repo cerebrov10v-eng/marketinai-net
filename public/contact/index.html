@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto — MarketinAI</title>
+  <meta name="description" content="Contacta con MarketinAI por email o Telegram. Soporte en 48h." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://marketinai.net/contact" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #050a0f; --bg2: #0a1220; --accent: #00d4ff; --accent2: #34d399; --text: #e2e8f0; --text2: #94a3b8; --border: rgba(0,212,255,0.15); }
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; padding: 40px 24px; }
+    .container { max-width: 720px; margin: 0 auto; }
+    nav { margin-bottom: 48px; }
+    nav a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 0.9rem; }
+    h1 { font-size: 2.4rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 8px; }
+    .subtitle { color: var(--text2); font-size: 1.05rem; margin-bottom: 48px; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 32px; text-align: center; }
+    .card h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+    .card p { color: var(--text2); font-size: 0.92rem; margin-bottom: 20px; }
+    .card a { display: inline-block; padding: 12px 24px; border-radius: 10px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: opacity .2s; }
+    .btn-primary { background: var(--accent); color: var(--bg); }
+    .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
+    .card a:hover { opacity: .9; }
+    .response { margin-top: 48px; text-align: center; color: var(--text2); font-size: 0.9rem; }
+    .response strong { color: var(--accent2); }
+    footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text2); font-size: 0.82rem; text-align: center; }
+    @media (max-width: 640px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav><a href="/">← Volver a MarketinAI</a></nav>
+    <h1>Contacto</h1>
+    <p class="subtitle">¿Tienes dudas? Escríbenos. Respondemos en menos de 48 horas.</p>
+
+    <div class="contact-grid">
+      <div class="card">
+        <h2>Email</h2>
+        <p>Para consultas generales, soporte y garantías.</p>
+        <a class="btn-primary" href="mailto:hola@marketinai.net">hola@marketinai.net</a>
+      </div>
+      <div class="card">
+        <h2>Telegram</h2>
+        <p>Canal privado de soporte para clientes.</p>
+        <a class="btn-secondary" href="https://t.me/MarketinAIBot" target="_blank" rel="noopener noreferrer">@MarketinAIBot</a>
+      </div>
+    </div>
+
+    <div class="response">
+      <p>Tiempo medio de respuesta: <strong>menos de 48h</strong> · Lunes a viernes, 9:00–18:00 CET</p>
+    </div>
+
+    <footer>
+      <p>© 2026 MarketinAI · <a href="mailto:hola@marketinai.net" style="color:var(--accent)">hola@marketinai.net</a> · <a href="/" style="color:var(--accent)">Inicio</a> · <a href="/pricing" style="color:var(--accent)">Precios</a> · <a href="/services" style="color:var(--accent)">Servicios</a></p>
+    </footer>
+  </div>
+
+  <!-- Telegram Bot Flotante -->
+  <a href="https://t.me/MarketinAIBot" target="_blank" rel="noopener" aria-label="Contactar en Telegram" style="position:fixed;bottom:28px;right:28px;z-index:9999;width:56px;height:56px;background:#229ED9;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(34,158,217,.45);text-decoration:none;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 32px rgba(34,158,217,.7)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 24px rgba(34,158,217,.45)'">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.985 13.645l-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+  </a>
+</body>
+</html>

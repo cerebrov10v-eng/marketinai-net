@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda — MarketinAI</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="description" content="Kit de automatización con IA para pymes y agencias. Flujos n8n, agentes IA, email marketing y publicación automática.">
+  <link rel="canonical" href="https://marketinai.net/tienda/">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0b; color: #f0f0f0; line-height: 1.6;
+    }
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2rem; border-bottom: 1px solid #1a1a1e;
+    }
+    nav a { color: #f0f0f0; text-decoration: none; font-weight: 600; }
+    .logo { font-size: 1.3rem; }
+    .logo span { color: #d4af37; }
+    .container { max-width: 960px; margin: 0 auto; padding: 3rem 1.5rem; }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; text-align: center; }
+    .subtitle { text-align: center; color: #a0a0a5; margin-bottom: 2.5rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .card {
+      background: #141416; border: 1px solid #2a2a2e; border-radius: 1rem;
+      padding: 2rem; display: flex; flex-direction: column;
+    }
+    .card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .card .price { font-size: 2rem; font-weight: 800; color: #d4af37; margin: 1rem 0; }
+    .card .price span { font-size: 1rem; color: #a0a0a5; font-weight: 400; }
+    .card ul { list-style: none; margin-bottom: 1.5rem; flex-grow: 1; }
+    .card ul li { padding: 0.4rem 0; color: #c0c0c5; font-size: 0.95rem; }
+    .card ul li::before { content: "✓"; color: #d4af37; margin-right: 0.5rem; }
+    .btn {
+      display: block; text-align: center; background: #d4af37; color: #0a0a0b;
+      padding: 0.85rem; border-radius: 0.6rem; text-decoration: none;
+      font-weight: 700; transition: transform 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; border: 1px solid #d4af37; color: #d4af37;
+    }
+    .featured { border-color: #d4af37; position: relative; }
+    .featured::before {
+      content: "MÁS POPULAR"; position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+      background: #d4af37; color: #0a0a0b; font-size: 0.7rem; font-weight: 800;
+      padding: 0.2rem 1rem; border-radius: 0 0 0.4rem 0.4rem;
+    }
+    footer { text-align: center; padding: 2rem; color: #606065; font-size: 0.85rem; border-top: 1px solid #1a1a1e; margin-top: 3rem; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="logo">Marketin<span>AI</span></a>
+    <a href="/">← Volver</a>
+  </nav>
+  <div class="container">
+    <h1>Elige tu Kit de Automatización</h1>
+    <p class="subtitle">Todo lo que necesitas para automatizar tu empresa con IA. Un único pago. Acceso de por vida.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Kit MarketinAI</h3>
+        <p style="color:#a0a0a5; font-size:0.9rem;">Para freelancers y pymes</p>
+        <div class="price">€397 <span>de por vida</span></div>
+        <ul>
+          <li>6 flujos n8n listos para usar</li>
+          <li>Agentes IA para copywriting</li>
+          <li>Email marketing automatizado</li>
+          <li>Publicación automática RRSS</li>
+          <li>Documentación paso a paso</li>
+          <li>Actualizaciones 12 meses</li>
+        </ul>
+        <a href="/?ref=tienda#pricing" class="btn">Comprar ahora →</a>
+      </div>
+      <div class="card featured">
+        <h3>Kit + Implementación</h3>
+        <p style="color:#a0a0a5; font-size:0.9rem;">Para agencias y equipos</p>
+        <div class="price">€597 <span>de por vida</span></div>
+        <ul>
+          <li>Todo lo del Kit MarketinAI</li>
+          <li>Sesión 1-a-1 de 60 minutos</li>
+          <li>Configuración personalizada</li>
+          <li>2 agentes IA adicionales</li>
+          <li>Soporte prioritario 30 días</li>
+          <li>Acceso al repo privado</li>
+        </ul>
+        <a href="/?ref=tienda#pricing" class="btn">Comprar ahora →</a>
+      </div>
+      <div class="card">
+        <h3>Consultoría IA</h3>
+        <p style="color:#a0a0a5; font-size:0.9rem;">Para empresas establecidas</p>
+        <div class="price">€149 <span>/hora</span></div>
+        <ul>
+          <li>Auditoría de procesos</li>
+          <li>Plan de automatización</li>
+          <li>Selección de herramientas</li>
+          <li>ROI estimado</li>
+          <li>Presupuesto sin compromiso</li>
+        </ul>
+        <a href="mailto:hello@marketinai.net?subject=Consultoría IA" class="btn btn-outline">Solicitar info →</a>
+      </div>
+    </div>
+  </div>
+  <footer>© 2026 MarketinAI.net — Todos los derechos reservados</footer>
+</body>
+</html>

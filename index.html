@@ -257,5 +257,11 @@
     </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <!-- Cookie Banner GDPR -->
+    <div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#141416;border-top:1px solid #2a2a2e;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;z-index:9999;font-size:0.9rem;">
+      <span style="color:#c0c0c5;">Utilizamos cookies para analytics y mejorar tu experiencia. <a href="/privacidad/" style="color:#d4af37;">Política de privacidad</a></span>
+      <button onclick="document.getElementById('cookie-banner').style.display='none';localStorage.setItem('cookie_consent','true')" style="background:#d4af37;color:#0a0a0b;border:none;padding:0.5rem 1.2rem;border-radius:0.5rem;font-weight:700;cursor:pointer;">Aceptar</button>
+    </div>
+    <script>if(localStorage.getItem('cookie_consent'))document.getElementById('cookie-banner').style.display='none';</script>
   </body>
 </html>

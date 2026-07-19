@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/servicios/style.css" />
+<link rel="canonical" href="https://marketinai.net/gracias/" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Gracias por tu compra — MarketinAI</title>
+  <meta name="description" content="Completa los datos de tu proyecto para que podamos empezar a trabajar en tu servicio contratado." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Gracias por tu compra — MarketinAI" />
+  <meta property="og:description" content="Completa los datos de tu proyecto para que podamos empezar a trabajar en tu servicio contratado." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://marketinai.net/gracias/" />
+  <meta property="og:image" content="https://marketinai.net/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LG5S74BFF4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LG5S74BFF4');
+</script>
+</head>
+
+<body>
+  <nav class="nav">
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">Marketin<span>AI</span></a>
+    <button class="nav-toggle" aria-label="Menú" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <div class="nav-links">
+      <a href="/">Inicio</a>
+      <a href="/servicios/">Servicios</a>
+      <a href="/pricing/">Precios</a>
+      <a href="/contact/">Contacto</a>
+      <a href="/" class="nav-cta">Kit IA — €397</a>
+    </div>
+  </div>
+</nav>
+
+  <header class="page-header">
+    <div class="container">
+      <h1>¡Gracias! Solo un paso más para empezar</h1>
+      <p class="subtitle">Completa los datos de tu proyecto. Así vinculamos tu pago con el equipo que ejecutará el servicio.</p>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="form-block">
+        <form id="lead-form" data-service="GRACIAS">
+          <div class="form-group">
+            <label for="nombre">Nombre<span class="req">*</span></label>
+            <input type="text" id="nombre" name="nombre" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email<span class="req">*</span></label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" />
+          </div>
+          <div class="form-group">
+            <label for="empresa">Empresa</label>
+            <input type="text" id="empresa" name="empresa" />
+          </div>
+          <div class="form-group">
+            <label for="web">URL de tu web<span class="req">*</span></label>
+            <input type="url" id="web" name="web" required />
+          </div>
+          <div class="form-group">
+            <label for="servicio">Servicio contratado</label>
+            <select id="servicio" name="servicio">
+              <option value="MKAI-AE-99">Auditoría Express — 99€</option>
+              <option value="MKAI-AF-399">Auditoría + Fix 48h — 399€</option>
+              <option value="MKAI-PC-199">Plan Crecimiento — 199€/mes</option>
+              <option value="MKAI-PL-SETUP">Pack Presencia Local — 199€ setup</option>
+              <option value="MKAI-AUTO">Automatización a Medida</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="mensaje">Mensaje adicional</label>
+            <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos lo que necesites..."></textarea>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" id="consent_rgpd" name="consent_rgpd" required />
+            <label for="consent_rgpd">☑ He leído y acepto la <a href="/privacidad/">Política de Privacidad</a>. Consiento que <strong>MarketinAI</strong> trate mis datos para gestionar mi solicitud y prestar el servicio contratado.</label>
+          </div>
+          <button type="submit" class="btn-submit">Enviar datos del proyecto</button>
+        </form>
+        <div id="form-status" class="form-status"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+  <div class="container">
+    <p>
+      © 2026 MarketinAI · <a href="mailto:hola@marketinai.net">hola@marketinai.net</a>
+      · <a href="/privacidad/">Privacidad</a> · <a href="/terminos/">Términos</a>
+    </p>
+  </div>
+</footer>
+  <script>
+(function(){
+  const form = document.getElementById('lead-form');
+  if (!form) return;
+  const status = document.getElementById('form-status');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    status.className = 'form-status';
+    status.textContent = '';
+
+    const data = Object.fromEntries(new FormData(form).entries());
+    data.service = form.dataset.service;
+    data.source = 'marketinai.net' + window.location.pathname;
+    data.ts = new Date().toISOString();
+    data.extras = {};
+    form.querySelectorAll('[data-extra]').forEach(el => {
+      data.extras[el.name] = el.value;
+    });
+    data.consent_rgpd = !!data.consent_rgpd;
+    data.consent_marketing = !!data.consent_marketing;
+
+    try {
+      const res = await fetch('/api/marketinai/lead-capture', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const json = await res.json().catch(() => ({}));
+      if (res.ok || json.success || json.status === 'ok') {
+        status.className = 'form-status success';
+        status.textContent = 'Solicitud enviada. Te contactamos en menos de 24h.';
+        form.reset();
+        window.gtag && gtag('event', 'lead_enviado', { service: data.service });
+      } else {
+        throw new Error(json.message || 'Error al enviar');
+      }
+    } catch (err) {
+      status.className = 'form-status error';
+      status.textContent = 'No se pudo enviar automáticamente. Escríbenos a hola@marketinai.net o por Telegram y te atendemos enseguida.';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Enviar solicitud';
+    }
+  });
+})();
+</script>
+</body>
+</html>
