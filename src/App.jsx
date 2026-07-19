@@ -139,6 +139,7 @@ export default function App() {
         <div className="container nav-inner">
           <div className="nav-logo">Marketin<span>AI</span></div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <a href="mailto:hola@marketinai.net" style={{ color: 'var(--text2)', fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none' }}>hola@marketinai.net</a>
             <a href="/servicios/" style={{ color: 'var(--text2)', fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none' }}>Servicios</a>
             <a className="nav-cta" href={STRIPE_PAYMENT_LINK} target="_blank" rel="noopener noreferrer">
               Acceder al Kit — €397
@@ -231,6 +232,33 @@ export default function App() {
                 <p>{k.desc}</p>
                 <span className="kit-tag">{k.tag}</span>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICIOS */}
+      <section className="section" id="servicios">
+        <div className="container">
+          <span className="section-tag purple">Servicios productizados</span>
+          <h2>También lo hacemos <span className="accent">por ti</span></h2>
+          <p className="section-sub">
+            Si prefieres que auditamos, arreglamos y automatizamos tu web sin tocar código, estos son nuestros servicios cerrados.
+          </p>
+          <div className="kit-grid">
+            {[
+              { title: 'Auditoría Express', price: '99€', desc: 'Radiografía completa de tu web con evidencia real y prioridades P0/P1/P2.', href: '/servicios/auditoria-express/' },
+              { title: 'Auditoría + Fix 48h', price: '399€', desc: 'No solo diagnóstico: aplicamos los fixes críticos en 48 horas.', href: '/servicios/auditoria-fix-48h/' },
+              { title: 'Plan Crecimiento', price: '199€/mes', desc: 'Mantenimiento SEO, velocidad y contenidos cada mes. Sin permanencia.', href: '/servicios/plan-crecimiento/' },
+              { title: 'Pack Presencia Local', price: '199€ + 99€/mes', desc: 'Google Business Profile optimizado + SEO local para captar clientes cerca.', href: '/servicios/presencia-local/' },
+              { title: 'Automatización a Medida', price: 'desde 500€', desc: 'Flujos n8n y agentes IA diseñados para tu proceso concreto.', href: '/servicios/automatizacion/' },
+            ].map((s) => (
+              <a key={s.title} href={s.href} className="kit-card" style={{ textDecoration: 'none' }}>
+                <div className="kit-number">{s.price}</div>
+                <h3>{s.title}</h3>
+                <p>{s.desc}</p>
+                <span className="kit-tag">Ver servicio →</span>
+              </a>
             ))}
           </div>
         </div>

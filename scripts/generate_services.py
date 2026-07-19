@@ -131,6 +131,7 @@ SERVICES = {
         "price": "99€",
         "price_note": "pago único · sin IVA",
         "sku": "MKAI-AE-99",
+        "stripe_link": "https://buy.stripe.com/fZu14of9OcF7goN7DldfG05",
         "includes": [
             "Análisis de velocidad y rendimiento (tiempos de carga reales, móvil y escritorio)",
             "Revisión SEO técnica: indexación, títulos, metas, estructura de encabezados, errores 404",
@@ -166,6 +167,7 @@ SERVICES = {
         "price": "399€",
         "price_note": "pago único · sin IVA",
         "sku": "MKAI-AF-399",
+        "stripe_link": "https://buy.stripe.com/dRm00ke5KbB3b4tcXFdfG06",
         "includes": [
             "Todo lo de la Auditoría Express (informe completo con prioridades)",
             "Corrección implementada de los 5-10 hallazgos críticos: rendimiento, SEO on-page, formularios rotos, errores de maquetación móvil",
@@ -204,6 +206,7 @@ SERVICES = {
         "price": "199€/mes",
         "price_note": "sin permanencia · sin IVA",
         "sku": "MKAI-PC-199",
+        "stripe_link": "https://buy.stripe.com/bJedRaaTycF71tTe1JdfG07",
         "includes": [
             "Monitorización continua: caídas, velocidad y formularios (te avisamos antes de que lo note un cliente)",
             "2 mini-mejoras implementadas al mes (ajustes de conversión, SEO, contenido menor, correcciones)",
@@ -239,6 +242,7 @@ SERVICES = {
         "price": "199€ + 99€/mes",
         "price_note": "setup + mensualidad · sin permanencia · sin IVA",
         "sku": "MKAI-PL-SETUP",
+        "stripe_link": "https://buy.stripe.com/bJebJ23r634x4G5e1JdfG08",
         "includes_setup": [
             "Google Business Profile creado u optimizado: categorías, descripción, fotos, horarios, atributos",
             "Landing page de captación local (diseño + copy + formulario) conectada a tu email/WhatsApp",
@@ -282,6 +286,7 @@ SERVICES = {
         "price": "desde 500€",
         "price_note": "presupuesto cerrado · sin IVA",
         "sku": "MKAI-AUTO",
+        "stripe_link": "https://buy.stripe.com/fZu4gA0eUfRj2xXbTBdfG0a",
         "includes": [
             "Captación automática: formulario → WhatsApp/email de bienvenida inmediato → aviso a tu equipo",
             "Secuencias de seguimiento de leads que no responden (3-5 toques automáticos)",
@@ -509,6 +514,8 @@ def build_service_page(sid, service):
     form = build_form(sid, service)
 
     cta_primary = f'<a href="#formulario" class="btn-primary">{service["cta"]}</a>'
+    if service.get("stripe_link"):
+        cta_primary = f'<a href="{service["stripe_link"]}" target="_blank" rel="noopener noreferrer" class="btn-primary">{service["cta"]}</a>'
     cta_secondary = ""
     if sid == "auditoria-express":
         cta_secondary = '<a href="/downloads/guia-7-errores.pdf" class="btn-secondary">Ver un informe de ejemplo</a>'
