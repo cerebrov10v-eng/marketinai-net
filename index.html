@@ -100,13 +100,25 @@
     }
     </script>
 
-    <!-- Google Analytics GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LG5S74BFF4"></script>
+    <!-- Google Analytics GA4 — Carga solo tras consentimiento RGPD -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-LG5S74BFF4');
+      window.loadGA4 = function() {
+        if (window._ga4Loaded) return;
+        window._ga4Loaded = true;
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-LG5S74BFF4';
+        document.head.appendChild(script);
+        script.onload = function() {
+          gtag('js', new Date());
+          gtag('config', 'G-LG5S74BFF4');
+        };
+      };
+      if (localStorage.getItem('cookie_consent') === 'true') {
+        window.loadGA4();
+      }
     </script>
     <!-- HowTo Schema: AEO para buscadores IA -->
     <script type="application/ld+json">
@@ -259,9 +271,28 @@
     <script type="module" src="/src/main.jsx"></script>
     <!-- Cookie Banner GDPR -->
     <div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#141416;border-top:1px solid #2a2a2e;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;z-index:9999;font-size:0.9rem;">
-      <span style="color:#c0c0c5;">Utilizamos cookies para analytics y mejorar tu experiencia. <a href="/privacidad/" style="color:#d4af37;">Política de privacidad</a></span>
-      <button onclick="document.getElementById('cookie-banner').style.display='none';localStorage.setItem('cookie_consent','true')" style="background:#d4af37;color:#0a0a0b;border:none;padding:0.5rem 1.2rem;border-radius:0.5rem;font-weight:700;cursor:pointer;">Aceptar</button>
+      <span style="color:#c0c0c5;">Utilizamos cookies técnicas y de analytics para mejorar tu experiencia. <a href="/cookies/" style="color:#d4af37;">Política de cookies</a> · <a href="/privacidad/" style="color:#d4af37;">Privacidad</a></span>
+      <div style="display:flex;gap:0.5rem;">
+        <button onclick="rejectCookies()" style="background:transparent;color:#c0c0c5;border:1px solid #2a2a2e;padding:0.5rem 1.2rem;border-radius:0.5rem;font-weight:700;cursor:pointer;">Rechazar</button>
+        <button onclick="acceptCookies()" style="background:#d4af37;color:#0a0a0b;border:none;padding:0.5rem 1.2rem;border-radius:0.5rem;font-weight:700;cursor:pointer;">Aceptar</button>
+      </div>
     </div>
-    <script>if(localStorage.getItem('cookie_consent'))document.getElementById('cookie-banner').style.display='none';</script>
+    <script>
+      function acceptCookies() {
+        localStorage.setItem('cookie_consent', 'true');
+        document.getElementById('cookie-banner').style.display = 'none';
+        if (typeof window.loadGA4 === 'function') window.loadGA4();
+      }
+      function rejectCookies() {
+        localStorage.setItem('cookie_consent', 'false');
+        document.getElementById('cookie-banner').style.display = 'none';
+      }
+      if (localStorage.getItem('cookie_consent')) {
+        document.getElementById('cookie-banner').style.display = 'none';
+        if (localStorage.getItem('cookie_consent') === 'true' && typeof window.loadGA4 === 'function') {
+          window.loadGA4();
+        }
+      }
+    </script>
   </body>
 </html>
