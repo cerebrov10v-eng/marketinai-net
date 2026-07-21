@@ -153,11 +153,11 @@ export default function App() {
         <div className="container">
           <div className="hero-badge">
             <span className="hero-badge-dot"></span>
-            Precio de fundadores — plazas limitadas
+            Motor de IA propio · 265 skills en producción real
           </div>
           <h1>
             Automatiza tu negocio<br />
-            con <span className="accent">IA</span> en <span className="accent2">4 horas</span>
+            con <span className="accent">IA</span> en <span className="accent2">días, no meses</span>
           </h1>
           <p className="hero-sub">
             Kit completo: 6 flujos n8n listos para instalar + sesión 1-a-1 de implementación.
@@ -165,7 +165,7 @@ export default function App() {
           </p>
           <div className="hero-cta-group">
             <a className="btn-primary" href={STRIPE_PAYMENT_LINK} target="_blank" rel="noopener noreferrer">
-              Quiero automatizar mi negocio →
+              Quiero el Kit MarketinAI →
             </a>
             <a className="btn-secondary" href="#kit">
               Ver qué incluye ↓
@@ -178,8 +178,32 @@ export default function App() {
               ))}
             </div>
             <p className="social-proof-text">
-              <strong>+47 negocios</strong> ya automatizan con este kit
+              <strong>Precios cerrados, sin permanencias, garantía 14 días</strong>
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* METRICS */}
+      <section className="metrics-strip">
+        <div className="container">
+          <div className="metrics-grid">
+            <div className="metric-item">
+              <span className="metric-number">6</span>
+              <span className="metric-label">Flujos n8n listos</span>
+            </div>
+            <div className="metric-item">
+              <span className="metric-number">24/7</span>
+              <span className="metric-label">IA trabajando</span>
+            </div>
+            <div className="metric-item">
+              <span className="metric-number">€0</span>
+              <span className="metric-label">Auditoría inicial</span>
+            </div>
+            <div className="metric-item">
+              <span className="metric-number">14</span>
+              <span className="metric-label">Días garantía</span>
+            </div>
           </div>
         </div>
       </section>
@@ -316,16 +340,88 @@ export default function App() {
         </div>
       </section>
 
+      {/* KIT VS SERVICIO */}
+      <section className="section" id="kit-vs-servicio">
+        <div className="container">
+          <span className="section-tag purple">¿Kit o servicio?</span>
+          <h2>Elige en 30 segundos</h2>
+          <p className="section-sub">
+            Los dos caminos llevan al mismo sitio: tu negocio automatizado. La diferencia es quién lo mantiene.
+          </p>
+          <div className="kit-vs-grid">
+            <div className="kit-vs-card">
+              <h3>Kit MarketinAI — 397€ una vez</h3>
+              <p>Para ti si quieres los 6 flujos instalados y prefieres mantenerlos tú, con nuestro acompañamiento.</p>
+              <ul>
+                <li>6 flujos n8n instalados</li>
+                <li>Sesión 1-a-1 de implementación</li>
+                <li>Canal Telegram 30 días</li>
+                <li>Actualizaciones de por vida</li>
+                <li>Garantía 14 días</li>
+              </ul>
+              <a href="/kit/" className="btn-primary">Ver el Kit →</a>
+            </div>
+            <div className="kit-vs-card">
+              <h3>Servicios mensuales — desde 197€/mes</h3>
+              <p>Para ti si no quieres tocar nada técnico: nuestro equipo opera SEO, publicidad, CRM o contenido por ti.</p>
+              <ul>
+                <li>Operación DFY completa</li>
+                <li>Reportes claros mensuales</li>
+                <li>Sin permanencia</li>
+                <li>Equipo dedicado</li>
+                <li>Escala cuando quieras</li>
+              </ul>
+              <a href="/servicios/" className="btn-secondary">Ver planes →</a>
+            </div>
+          </div>
+          <p className="section-sub" style={{ marginTop: '2rem' }}>
+            ¿Lo dudas? <a href="/contact/" onClick={() => { if (window.gtag) window.gtag('event', 'audit_start', { type: 'llamada_30min' }) }} style={{ color: 'var(--accent)', textDecoration: 'underline' }}>Reserva la auditoría gratuita de 30 minutos</a> y te lo decimos mirando tu caso. Sin compromiso.
+          </p>
+        </div>
+      </section>
+
+      {/* NEXUS ECOSISTEMA */}
+      <section className="section" id="nexus">
+        <div className="container">
+          <span className="section-tag green">Nexus ecosistema</span>
+          <h2>Un ecosistema, cuatro herramientas</h2>
+          <p className="section-sub">
+            MarketinAI es el brazo de implementación. Conecta con el resto de pilares para cerrar el círculo.
+          </p>
+          <div className="nexus-grid">
+            <a href="https://cursosai.net/?utm_source=marketinai&utm_medium=nexus&utm_campaign=ecosistema" target="_blank" rel="noopener" className="nexus-card">
+              <h3>CursosAI</h3>
+              <p>Aprende IA en producción: automatizaciones, agentes y sistemas reales. Empieza con el minicurso gratuito.</p>
+              <span>cursosai.net →</span>
+            </a>
+            <a href="https://abogadoai.net/?utm_source=marketinai&utm_medium=nexus&utm_campaign=ecosistema" target="_blank" rel="noopener" className="nexus-card">
+              <h3>AbogadoAI</h3>
+              <p>La capa legal del negocio digital: IA aplicada a servicios jurídicos.</p>
+              <span>abogadoai.net →</span>
+            </a>
+            <a href="https://margaritavnv.com/?utm_source=marketinai&utm_medium=nexus&utm_campaign=ecosistema" target="_blank" rel="noopener" className="nexus-card">
+              <h3>Margarita VNV</h3>
+              <p>Caso real del método: captación honesta aplicada al alquiler vacacional.</p>
+              <span>margaritavnv.com →</span>
+            </a>
+            <a href="https://cursosai.net/master-ia-agentes-autonomos/?utm_source=marketinai&utm_medium=nexus&utm_campaign=ecosistema" target="_blank" rel="noopener" className="nexus-card">
+              <h3>Máster 360° en IA</h3>
+              <p>El camino completo: de usar los flujos a construir los sistemas.</p>
+              <span>Máster 360° →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* GARANTIA */}
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
           <div className="guarantee-box">
             <div className="guarantee-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#34d399" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
-            <h3>Garantía de resultados 14 días</h3>
+            <h3>Garantía de 14 días</h3>
             <p>
-              Si en 14 días no has automatizado al menos una tarea que te ahorre 2 horas semanales,
-              te devuelvo el 100% del dinero. Sin formularios. Sin burocracia.
-              Solo escríbeme y listo.
+              Si tras la sesión de instalación no tienes al menos una tarea automatizada que te ahorre 2 horas semanales,
+              te devolvemos el importe íntegro. Sin formularios trampas.
             </p>
           </div>
         </div>

@@ -662,3 +662,94 @@ footer a { color: var(--accent); }
   .price-card.featured { transform: scale(1); }
   .hero-cta-group { flex-direction: column; align-items: flex-start; }
 }
+
+/* BLOQUES DOCUMENTO MAESTRO — metrics strip, kit-vs, nexus */
+.metrics-strip {
+  background: var(--bg2);
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  text-align: center;
+}
+.metric-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.metric-number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+.metric-label {
+  font-size: 0.85rem;
+  color: var(--text2);
+  margin-top: 0.25rem;
+}
+.kit-vs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.kit-vs-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+.kit-vs-card h3 {
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.kit-vs-card ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  color: var(--text2);
+}
+.kit-vs-card ul li {
+  margin-bottom: 0.5rem;
+}
+.nexus-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.nexus-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.nexus-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+.nexus-card h3 {
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.nexus-card p {
+  color: var(--text2);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+.nexus-card span {
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+@media (max-width: 768px) {
+  .metrics-grid, .kit-vs-grid, .nexus-grid {
+    grid-template-columns: 1fr;
+  }
+}
