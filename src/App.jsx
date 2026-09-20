@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 
-const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/7sY3cw2DL4cec3t4LP0co02'
-const STRIPE_PAYMENT_LINK_NORMAL = 'https://buy.stripe.com/5kQeVe2DL6km7Nd2DH0co03'
+const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/9B64gA1iYgVn5K99LtdfG0c'
+const STRIPE_PAYMENT_LINK_NORMAL = 'https://buy.stripe.com/fZu28se5KcF76Ode1JdfG0d'
 
 const KIT_ITEMS = [
   {
@@ -86,6 +86,118 @@ const FAQS = [
     a: 'Sí. Si en 14 días no has automatizado al menos una tarea que te ahorre 2h/semana, te devuelvo el dinero sin preguntas.',
   },
 ]
+
+const PRODUCT_FACTORY_ITEMS = [
+  {
+    title: 'Lead Qualification Engine',
+    desc: 'Filtra leads malos, clasifica intención y acelera las ventas sin cargar a tu equipo.',
+    href: '/productos/lead-qualification-engine/',
+  },
+  {
+    title: 'WhatsApp Sales Router',
+    desc: 'Enruta cada lead al canal correcto y responde antes de que pierda interés.',
+    href: '/productos/whatsapp-sales-router/',
+  },
+  {
+    title: 'Content Factory Weekly',
+    desc: 'Genera contenido semanal con un sistema reutilizable para vídeo, social y email.',
+    href: '/productos/content-factory-weekly/',
+  },
+]
+
+const LEAD_API = '/api/marketinai/lead-capture'
+
+function LeadForm() {
+  const [form, setForm] = useState({ nombre: '', email: '', telefono: '', empresa: '', mensaje: '', rgpd: false })
+  const [status, setStatus] = useState('idle') // idle | loading | success | error
+  const [errMsg, setErrMsg] = useState('')
+
+  const handle = (e) => {
+    const { name, value, type, checked } = e.target
+    setForm((f) => ({ ...f, [name]: type === 'checkbox' ? checked : value }))
+  }
+
+  const submit = async (e) => {
+    e.preventDefault()
+    if (!form.rgpd) { setErrMsg('Debes aceptar el tratamiento de datos.'); return }
+    if (!form.email) { setErrMsg('El email es obligatorio.'); return }
+    setStatus('loading')
+    setErrMsg('')
+    try {
+      const res = await fetch(LEAD_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: form.email,
+          nombre: form.nombre || null,
+          telefono: form.telefono || null,
+          empresa: form.empresa || null,
+          mensaje: form.mensaje || null,
+          consent_rgpd: form.rgpd,
+          source: 'marketinai-web',
+          funnel: 'lead-form',
+          url: window.location.href,
+        }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.detail || 'Error al enviar')
+      setStatus('success')
+      if (window.gtag) window.gtag('event', 'generate_lead', { method: 'form_marketinai' })
+    } catch (err) {
+      setStatus('error')
+      setErrMsg(err.message || 'Error de red. Inténtalo de nuevo.')
+    }
+  }
+
+  if (status === 'success') {
+    return (
+      <div className="lead-form-success">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#34d399" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <h3>¡Recibido!</h3>
+        <p>Te contestamos en menos de 24h para ver cómo podemos ayudarte.</p>
+      </div>
+    )
+  }
+
+  return (
+    <form className="lead-form" onSubmit={submit} noValidate>
+      <div className="lead-form-row">
+        <div className="form-group">
+          <label htmlFor="lf-nombre">Nombre</label>
+          <input id="lf-nombre" name="nombre" type="text" placeholder="Tu nombre" value={form.nombre} onChange={handle} autoComplete="name" />
+        </div>
+        <div className="form-group">
+          <label htmlFor="lf-email">Email <span className="form-required">*</span></label>
+          <input id="lf-email" name="email" type="email" placeholder="hola@tunegocio.com" value={form.email} onChange={handle} required autoComplete="email" />
+        </div>
+      </div>
+      <div className="lead-form-row">
+        <div className="form-group">
+          <label htmlFor="lf-empresa">Empresa</label>
+          <input id="lf-empresa" name="empresa" type="text" placeholder="Nombre de tu empresa (opcional)" value={form.empresa} onChange={handle} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="lf-telefono">Teléfono</label>
+          <input id="lf-telefono" name="telefono" type="tel" placeholder="+34 600 000 000 (opcional)" value={form.telefono} onChange={handle} autoComplete="tel" />
+        </div>
+      </div>
+      <div className="form-group">
+        <label htmlFor="lf-mensaje">¿En qué podemos ayudarte?</label>
+        <textarea id="lf-mensaje" name="mensaje" placeholder="Cuéntanos brevemente tu situación o qué proceso quieres automatizar..." value={form.mensaje} onChange={handle} rows={3} />
+      </div>
+      <div className="form-checkbox">
+        <input id="lf-rgpd" name="rgpd" type="checkbox" checked={form.rgpd} onChange={handle} />
+        <label htmlFor="lf-rgpd">
+          Acepto el tratamiento de mis datos según la <a href="/privacidad" target="_blank" rel="noopener">política de privacidad</a>.
+        </label>
+      </div>
+      {errMsg && <p className="form-error">{errMsg}</p>}
+      <button type="submit" className="form-submit" disabled={status === 'loading'}>
+        {status === 'loading' ? 'Enviando...' : 'Solicitar consulta gratuita →'}
+      </button>
+    </form>
+  )
+}
 
 export default function App() {
   const [openFaq, setOpenFaq] = useState(null)
@@ -240,6 +352,30 @@ export default function App() {
         </div>
       </section>
 
+      {/* LEAD CAPTURE FORM */}
+      <section className="section lead-capture-section" id="contacto">
+        <div className="container">
+          <div className="lead-capture-inner">
+            <div className="lead-capture-copy">
+              <span className="section-tag blue">Consulta gratuita</span>
+              <h2>¿No sabes por dónde empezar?<br /><span className="accent">Cuéntanos tu caso</span></h2>
+              <p className="section-sub" style={{ margin: '1rem 0 0' }}>
+                En 24h te decimos qué proceso de tu negocio puedes automatizar primero y cómo. Sin compromiso, sin venta agresiva.
+              </p>
+              <ul className="lead-capture-benefits">
+                <li><span className="check">✓</span> Diagnóstico personalizado de tu negocio</li>
+                <li><span className="check">✓</span> Propuesta concreta de qué automatizar</li>
+                <li><span className="check">✓</span> Respuesta en menos de 24h</li>
+                <li><span className="check">✓</span> Sin compromiso</li>
+              </ul>
+            </div>
+            <div className="lead-capture-form-wrap">
+              <LeadForm />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* KIT */}
       <section className="section" id="kit">
         <div className="container">
@@ -282,6 +418,27 @@ export default function App() {
                 <h3>{s.title}</h3>
                 <p>{s.desc}</p>
                 <span className="kit-tag">Ver servicio →</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PRODUCT FACTORY */}
+      <section className="section" id="fabrica">
+        <div className="container">
+          <span className="section-tag blue">Fábrica de productos</span>
+          <h2>Los próximos productos no nacen de la intuición<br /><span className="accent">nacen de urgencia, datos y utilidad</span></h2>
+          <p className="section-sub">
+            La primera ola de ideas ya está convertida en propuestas reales: landing, diagnóstico y CTA para vender sin improvisar.
+          </p>
+          <div className="product-factory-grid">
+            {PRODUCT_FACTORY_ITEMS.map((item) => (
+              <a key={item.title} href={item.href} className="product-factory-card">
+                <div className="product-factory-meta">Producto listo para vender</div>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+                <span className="product-factory-link">Ver propuesta →</span>
               </a>
             ))}
           </div>

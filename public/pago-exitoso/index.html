@@ -43,6 +43,7 @@
     <div class="icon">🎉</div>
     <h1>¡Bienvenido a MarketinAI!</h1>
     <p>Tu pago se ha procesado correctamente. En menos de 5 minutos recibirás un email con el acceso completo a tu kit de automatización.</p>
+    <p id="payment-status" style="display:none"></p>
     <a href="/" class="btn">Volver al inicio →</a>
     <div class="steps">
       <div class="step">
@@ -59,5 +60,36 @@
       </div>
     </div>
   </div>
+  <script>
+    const paymentStatus = document.getElementById('payment-status');
+    const params = new URLSearchParams(window.location.search);
+    const sessionId = params.get('session_id');
+
+    const setStatus = (message, color) => {
+      paymentStatus.style.display = 'block';
+      paymentStatus.style.color = color;
+      paymentStatus.textContent = message;
+    };
+
+    if (sessionId) {
+      fetch(`/api/marketinai/verify-session?session_id=${encodeURIComponent(sessionId)}`)
+        .then(async (response) => {
+          const data = await response.json();
+          if (!response.ok) {
+            throw new Error(data.detail || 'No se pudo validar el pago.');
+          }
+          if (data.verified) {
+            setStatus(`Pago verificado: ${data.amount} ${data.currency} · plan ${data.plan}`, '#34d399');
+          } else {
+            setStatus('La sesión existe pero el pago aún no figura como completado.', '#fbbf24');
+          }
+        })
+        .catch((error) => {
+          setStatus(error.message || 'No se pudo validar el pago automáticamente.', '#f87171');
+        });
+    } else {
+      setStatus('No se recibió session_id en la URL. Si ves este mensaje tras pagar, escríbenos a hola@marketinai.net.', '#fbbf24');
+    }
+  </script>
 </body>
 </html>

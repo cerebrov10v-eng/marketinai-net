@@ -397,6 +397,52 @@ nav {
   border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
+/* PRODUCT FACTORY */
+.product-factory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+}
+.product-factory-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 1.1rem;
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.product-factory-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+.product-factory-meta {
+  display: inline-block;
+  width: fit-content;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--accent);
+}
+.product-factory-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.product-factory-card p {
+  color: var(--text2);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.product-factory-link {
+  margin-top: auto;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
 /* PRICING */
 .pricing-wrapper {
   display: flex;
@@ -750,6 +796,166 @@ footer a { color: var(--accent); }
 }
 @media (max-width: 768px) {
   .metrics-grid, .kit-vs-grid, .nexus-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* LEAD CAPTURE SECTION */
+.lead-capture-section {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.04) 0%, rgba(124, 58, 237, 0.04) 100%);
+}
+.lead-capture-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.lead-capture-benefits {
+  list-style: none;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.lead-capture-benefits li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text2);
+  font-size: 0.95rem;
+}
+
+/* LEAD FORM */
+.lead-capture-form-wrap {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  padding: 2rem;
+}
+.lead-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.lead-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text2);
+  letter-spacing: 0.03em;
+}
+.form-required {
+  color: var(--accent);
+}
+.form-group input,
+.form-group textarea {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 0.65rem 0.9rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(148, 163, 184, 0.45);
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.12);
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+.form-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+.form-checkbox input[type="checkbox"] {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.15rem;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+}
+.form-checkbox label {
+  font-size: 0.82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.form-checkbox label a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+.form-error {
+  color: #f87171;
+  font-size: 0.85rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(248, 113, 113, 0.08);
+  border-radius: 0.4rem;
+  border: 1px solid rgba(248, 113, 113, 0.2);
+}
+.form-submit {
+  background: var(--accent);
+  color: #050a0f;
+  border: none;
+  border-radius: 0.6rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  width: 100%;
+  letter-spacing: 0.01em;
+}
+.form-submit:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+.form-submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+.lead-form-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 2rem;
+}
+.lead-form-success h3 {
+  font-size: 1.5rem;
+  color: var(--accent3);
+}
+.lead-form-success p {
+  color: var(--text2);
+}
+
+@media (max-width: 768px) {
+  .lead-capture-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .lead-form-row {
     grid-template-columns: 1fr;
   }
 }

@@ -114,6 +114,45 @@
     </div>
   </section>
 
+  <section class="section">
+    <div class="container">
+      <div class="form-block">
+        <h2>Cuéntanos tu caso y te orientamos en menos de 24h</h2>
+        <p class="subtitle">Si no tienes claro qué servicio encaja, te recomendamos el mejor punto de entrada según tu situación real.</p>
+        <form id="servicios-contact-form" novalidate>
+          <div class="form-group">
+            <label for="contact-nombre">Nombre</label>
+            <input id="contact-nombre" name="nombre" type="text" placeholder="Tu nombre" autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Email <span class="req">*</span></label>
+            <input id="contact-email" name="email" type="email" placeholder="hola@tunegocio.com" required autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="contact-empresa">Empresa</label>
+            <input id="contact-empresa" name="empresa" type="text" placeholder="Nombre de tu empresa (opcional)" />
+          </div>
+          <div class="form-group">
+            <label for="contact-telefono">Teléfono</label>
+            <input id="contact-telefono" name="telefono" type="tel" placeholder="+34 600 000 000 (opcional)" autocomplete="tel" />
+          </div>
+          <div class="form-group">
+            <label for="contact-mensaje">¿Qué te está bloqueando ahora? <span class="req">*</span></label>
+            <textarea id="contact-mensaje" name="mensaje" placeholder="Ejemplo: 'Llegan leads pero no los seguimos a tiempo', 'no tenemos un proceso de captación estable'..." required></textarea>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" id="contact-consent-rgpd" name="consent_rgpd" required />
+            <label for="contact-consent-rgpd">
+              He leído y acepto la <a href="/privacidad/">Política de Privacidad</a>. Consiento que <strong>MarketinAI</strong> trate mis datos para responder a mi solicitud.
+            </label>
+          </div>
+          <button type="submit" class="btn-submit">Solicitar recomendación de servicio</button>
+          <div id="contact-form-status" class="form-status"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <footer>
   <div class="container">
     <p>
@@ -122,5 +161,68 @@
     </p>
   </div>
 </footer>
+<script>
+  const serviciosForm = document.getElementById('servicios-contact-form');
+  const serviciosStatus = document.getElementById('contact-form-status');
+
+  const setServiciosStatus = (type, message) => {
+    serviciosStatus.className = 'form-status';
+    if (!type) {
+      serviciosStatus.textContent = '';
+      return;
+    }
+    serviciosStatus.classList.add(type);
+    serviciosStatus.textContent = message;
+  };
+
+  serviciosForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    setServiciosStatus();
+
+    const submitButton = serviciosForm.querySelector('button[type="submit"]');
+    const formData = new FormData(serviciosForm);
+    const payload = Object.fromEntries(formData.entries());
+    payload.consent_rgpd = !!payload.consent_rgpd;
+
+    if (!payload.email || !payload.consent_rgpd || !payload.mensaje) {
+      setServiciosStatus('error', 'Completa los campos obligatorios y acepta la política de privacidad.');
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Enviando...';
+
+    try {
+      const response = await fetch('/api/marketinai/lead-capture', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: payload.email,
+          nombre: payload.nombre || null,
+          telefono: payload.telefono || null,
+          empresa: payload.empresa || null,
+          mensaje: payload.mensaje,
+          consent_rgpd: payload.consent_rgpd,
+          source: 'marketinai-servicios',
+          funnel: 'servicios-contacto',
+          url: window.location.href,
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.detail || 'No se pudo enviar el formulario.');
+      }
+
+      setServiciosStatus('success', 'Recibido. Te respondemos en menos de 24h con una recomendación clara.');
+      serviciosForm.reset();
+    } catch (error) {
+      setServiciosStatus('error', error.message || 'Error de red. Inténtalo de nuevo.');
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = 'Solicitar recomendación de servicio';
+    }
+  });
+</script>
 </body>
 </html>
