@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 
-const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/9B64gA1iYgVn5K99LtdfG0c'
-const STRIPE_PAYMENT_LINK_NORMAL = 'https://buy.stripe.com/fZu28se5KcF76Ode1JdfG0d'
 
 const KIT_ITEMS = [
   {
@@ -253,9 +251,6 @@ export default function App() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <a href="mailto:hola@marketinai.net" style={{ color: 'var(--text2)', fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none' }}>hola@marketinai.net</a>
             <a href="/servicios/" style={{ color: 'var(--text2)', fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none' }}>Servicios</a>
-            <a className="nav-cta" href={STRIPE_PAYMENT_LINK} target="_blank" rel="noopener noreferrer">
-              Acceder al Kit — €397
-            </a>
           </div>
         </div>
       </nav>
@@ -276,9 +271,6 @@ export default function App() {
             Capta leads, gestiona soporte y publica contenido en piloto automático — sin contratar a nadie.
           </p>
           <div className="hero-cta-group">
-            <a className="btn-primary" href={STRIPE_PAYMENT_LINK} target="_blank" rel="noopener noreferrer">
-              Quiero el Kit MarketinAI →
-            </a>
             <a className="btn-secondary" href="#kit">
               Ver qué incluye ↓
             </a>
@@ -471,9 +463,6 @@ export default function App() {
                 <li><span className="check">✓</span> Documentación paso a paso en español</li>
                 <li><span className="check">✓</span> Garantía 14 días sin preguntas</li>
               </ul>
-              <a className="btn-price primary" href={STRIPE_PAYMENT_LINK} target="_blank" rel="noopener noreferrer">
-                Quiero el Kit por €397 →
-              </a>
             </div>
             <div className="price-card">
               <p className="price-title">Precio normal</p>
@@ -489,9 +478,6 @@ export default function App() {
                 <li><span className="check">✓</span> Actualizaciones de por vida</li>
                 <li><span className="check">✓</span> Garantía 14 días</li>
               </ul>
-              <a className="btn-price secondary" href={STRIPE_PAYMENT_LINK_NORMAL} target="_blank" rel="noopener noreferrer">
-                Comprar a precio normal
-              </a>
             </div>
           </div>
         </div>
@@ -622,9 +608,6 @@ export default function App() {
             Cada semana que esperas son horas perdidas en tareas que una IA puede hacer por ti.
             El Kit está listo. Solo falta que tú lo instales.
           </p>
-          <a className="btn-primary" href={STRIPE_PAYMENT_LINK} target="_blank" rel="noopener noreferrer">
-            Acceder al Kit MarketinAI — €397 →
-          </a>
         </div>
       </section>
 
